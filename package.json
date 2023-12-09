@@ -1,0 +1,38 @@
+{
+  "name": "quirks-starter-kit",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
+    "nuxt": "^3.8.2",
+    "sass": "^1.69.5",
+    "vite-plugin-vuetify": "^1.0.2",
+    "vue": "^3.3.10",
+    "vue-router": "^4.2.5",
+    "vuetify": "^3.4.6"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/vue-fontawesome": "^3.0.5",
+    "@mdi/font": "^7.3.67",
+    "@nabla-studio/chain-registry": "^0.3.2",
+    "@pinia/nuxt": "^0.5.1",
+    "@quirks/nuxt": "^0.1.11",
+    "@quirks/store": "^0.9.1",
+    "@quirks/vue": "^0.4.0",
+    "@quirks/wallets": "^0.7.1",
+    "cosmjs-types": "^0.9.0",
+    "pinia": "^2.1.7"
+  }
+}
