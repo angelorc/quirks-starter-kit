@@ -24,7 +24,7 @@ dependencies:
     specifier: ^7.3.67
     version: 7.3.67
   '@nabla-studio/chain-registry':
-    specifier: ^0.3.2
+    specifier: ^0.3.3
     version: 0.3.3
   '@pinia/nuxt':
     specifier: ^0.5.1
@@ -33,13 +33,13 @@ dependencies:
     specifier: ^0.1.16
     version: 0.1.16(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@nuxt/kit@3.8.2)(@nuxt/schema@3.8.2)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(nuxt@3.8.2)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
   '@quirks/store':
-    specifier: ^0.9.2
+    specifier: ^0.9.4
     version: 0.9.4(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7)
   '@quirks/vue':
     specifier: ^0.4.3
     version: 0.4.3(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
   '@quirks/wallets':
-    specifier: ^0.7.2
+    specifier: ^0.7.4
     version: 0.7.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@cosmostation/extension-client@0.1.15)(@keplr-wallet/types@0.12.52)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(semver@7.5.4)
   '@vueuse/core':
     specifier: ^10.7.0
