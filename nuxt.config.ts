@@ -10,11 +10,13 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vue-toastification', 'vuetify', '@quirks/vue', '@quirks/store', '@quirks/wallets'],
   },
   modules: [
+    '@nuxt/image',
     '@pinia/nuxt',
     '@quirks/nuxt',
+    '@vueuse/nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
@@ -36,6 +38,11 @@ export default defineNuxtConfig({
           global: "globalThis",
         },
       },
+      include: [
+        '@quirks/vue',
+        '@quirks/store',
+        '@quirks/wallets'
+      ]
     },
     vue: {
       template: {
