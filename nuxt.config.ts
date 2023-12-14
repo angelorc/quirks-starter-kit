@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vue-toastification', 'vuetify', '@quirks/vue', '@quirks/store', '@quirks/wallets'],
+    transpile: ['vue-toastification', 'vuetify'],
   },
   modules: [
     '@nuxt/image',
@@ -26,25 +26,7 @@ export default defineNuxtConfig({
     },
   ],
   vite: {
-    plugins: [
-      polyfillNode({
-        polyfills: {
-          buffer: true,
-        },
-      }),
-    ],
-    optimizeDeps: {
-      esbuildOptions: {
-        define: {
-          global: "globalThis",
-        },
-      },
-      include: [
-        '@quirks/vue',
-        '@quirks/store',
-        '@quirks/wallets'
-      ]
-    },
+    plugins: [polyfillNode()],
     vue: {
       template: {
         transformAssetUrls,

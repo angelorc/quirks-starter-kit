@@ -5,9 +5,9 @@
       <div class="ml-3 text-h5 mt-1">Interchain.fm </div>
     </div>
     <template #append>
-      <AppConnectBtn />
-      <!--<app-wallet-btn v-if="!isLoggedIn"></app-wallet-btn>-->
-
+      <client-only>
+        <AppConnectBtn />
+      </client-only>
     </template>
   </v-app-bar>
 </template>

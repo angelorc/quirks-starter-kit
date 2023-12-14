@@ -1,4 +1,3 @@
-
 <template>
   <v-dialog width="350" :model-value="props.modelValue" @update:model-value="$emit('update:modelValue', $event)">
     <v-card>
