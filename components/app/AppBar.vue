@@ -7,7 +7,7 @@
     </div>
     <template #append>
       <client-only>
-        <!--<app-wallet-btn v-if="!isLoggedIn"></app-wallet-btn>-->
+        <AppConnectBtn />
       </client-only>
     </template>
   </v-app-bar>
