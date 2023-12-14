@@ -3,17 +3,17 @@
     <template #body>
       <v-container>
         <v-row>
-          <v-col cols="10" class="mx-auto">
+          <v-col cols="8" class="mx-auto">
             <v-row>
               <v-col cols="auto">
-                <NuxtImg height="340" width="340" :src="episode.image" />
+                <NuxtImg height="340" width="340" :src="data.image" />
               </v-col>
               <v-col>
 
                 <v-btn to="/" color="grey" prepend-icon="mdi-arrow-left" variant="text" rounded="xl"> Back to
                   Episodes</v-btn>
                 <h1 class="text-h4 font-weight-bold py-4">
-                  {{ episode.title }}
+                  {{ data.title }}
                 </h1>
 
 
@@ -55,7 +55,8 @@
               <v-tab value="activity">Activity</v-tab>
             </v-tabs>
             <v-row class="mt-2">
-              <v-col class="text-body-2" v-html="description" v-if="tab === 'description'">
+              <v-col class="text-body-2" v-if="tab === 'description'">
+                <div v-html="description"></div>
               </v-col>
               <v-col v-else>
                 <div class="d-flex align-center py-2">
@@ -483,78 +484,16 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
+const { data } = await useAsyncData('feed:' + route.params.guid, () => $fetch(`/api/feed/${route.params.guid}`))
+
+const description = computed(() => data.value?.content?.replace(/\n/g, '<br />'))
+
 definePageMeta({
   layout: 'layout2'
 })
 
 const tab = ref('description')
-
-const episodes = computed(() => {
-  return [
-    {
-      title: '#93 - Catalyst AMM - Cross-chain AMM built for the modular future',
-      date: '12 dec 2023',
-      duration: '01:50:02',
-      image: 'https://image.simplecastcdn.com/images/c755dd62-dcde-4872-9a66-99ab36749c8e/94090afe-8545-4dc3-8af8-1cd2c6c9a30a/640x640/frame-1-1.jpg',
-      description: '✨About Akash AI Supercloud ✨\nThere is no denying the state of the world we live in. Just as the success of the Manhattan Project transitioned the old world into the new with the atomic bomb, AI is similarly shifting our\'s out of the Information Age into the AI Age....'
-    }, {
-      title: '#92 - How Akash Skynet will unleash an AI future no one is prepared for',
-      date: '12 dec 2023',
-      duration: '01:50:02',
-      image: 'https://image.simplecastcdn.com/images/c755dd62-dcde-4872-9a66-99ab36749c8e/94090afe-8545-4dc3-8af8-1cd2c6c9a30a/640x640/frame-1-1.jpg',
-      description: '✨About Akash AI Supercloud ✨\nThere is no denying the state of the world we live in. Just as the success of the Manhattan Project transitioned the old world into the new with the atomic bomb, AI is similarly shifting our\'s out of the Information Age into the AI Age....'
-    }, {
-      title: '#92 - How Akash Skynet will unleash an AI future no one is prepared for',
-      date: '12 dec 2023',
-      duration: '01:50:02',
-      image: 'https://image.simplecastcdn.com/images/c755dd62-dcde-4872-9a66-99ab36749c8e/94090afe-8545-4dc3-8af8-1cd2c6c9a30a/640x640/frame-1-1.jpg',
-      description: '✨About Akash AI Supercloud ✨\nThere is no denying the state of the world we live in. Just as the success of the Manhattan Project transitioned the old world into the new with the atomic bomb, AI is similarly shifting our\'s out of the Information Age into the AI Age....'
-    }
-  ]
-})
-
-const episode = computed(() => episodes.value[0])
-
-const description = `✨About Catalyst ✨
-
-Catalyst is the permissionless cross-chain Automated Market Maker (AMM) for the modular future. It enables
-easy liquidity connections and asset swaps between different blockchains, such as Ethereum, Cosmos, and
-rollups like Optimism and Eclipse.
-
-The goal of Catalyst is to create an interconnected ecosystem where users can effortlessly access assets
-and applications across multiple chains, and developers can easily launch new blockchains and connect them
-to existing networks and their respective users.
-
-🔗 Useful Links 🔗
-
-► Docs: https://docs.catalyst.exchange/docs/i...
-
-#interchainjam #blockchaintech #technews #web3news #interchainfm #cryptocurrency #cryptopodcasts
-
-💟 SUPPORT iFM
-
-If you enjoy this content, please give it a thumbs up and consider subscribing to Chjango Unchained's
-channel.
-
-If you stake on Cosmos Hub, Osmosis, Canto, Umee, and/or Comdex, you can support our work by delegating to
-Interchain.FM🥩!
-
-Join Cosmos Chjango's YouTube channel to get access to exclusive perks:
-
-/ @chjango
-
-📻 SUBSCRIBE to Interchain.FM on your preferred radio stations:
-
-👉 Apple Podcasts: https://podcasts.apple.com/us/podcast...
-👉 Spotify: https://open.spotify.com/show/4rlsgAx...
-👉 Google Podcasts: https://podcasts.google.com/feed/aHR0...
-👉 Amazon Music: https://music.amazon.co.uk/podcasts/2...
-
-🐦 OR tune in to Interchain.FM LIVE directly on Twitter at the exact moment we go on air 👉
-
-/ chjango
-`.replace(/\n/g, '<br />')
-
 </script>
 
 <style>

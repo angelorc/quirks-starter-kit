@@ -3,23 +3,19 @@
     <template #body>
       <v-container>
         <v-row>
-          <v-col cols="10" class="mx-auto">
+          <v-col cols="8" class="mx-auto">
             <v-row>
               <v-col cols="auto">
                 <NuxtImg height="340" width="340"
-                  src="https://image.simplecastcdn.com/images/c755dd62-dcde-4872-9a66-99ab36749c8e/94090afe-8545-4dc3-8af8-1cd2c6c9a30a/640x640/frame-1-1.jpg" />
+                  :src="data?.image.url || `https://placehold.co/600x400?text=${data?.title}`" :alt="data?.title" />
               </v-col>
               <v-col>
                 <h1 class="text-h4 font-weight-bold py-4">
-                  Interchain.FM
+                  {{ data?.title }}
                 </h1>
                 <h2 class="text-body-2 text-grey pt-2">By bitsong1h882ezq7dyewld6gfv2e06qymvjxnu842586h2</h2>
-                <p class="text-grey-lighten-1 text-body-2 pt-2">Interchain.FM is the Cosmos Radio Station which shines a
-                  light
-                  on the protocols that solve the hardest problems in Web3. It's a technical podcast that uncovers the
-                  vibrant
-                  world of bleeding edge technology built in the pursuit of anti-censorship, freedom, and preserving the
-                  privacy of the sovereign individual. Become an Interchain.FM🥩 staker on Osmosis, Comdex, and Umee!
+                <p class="text-grey-lighten-1 text-body-2 pt-2">
+                  {{ data?.description }}
                 </p>
                 <div class="pt-6">
                   <v-btn size="small" variant="plain" icon="fa:fas fa-link"></v-btn>
@@ -40,29 +36,29 @@
       </v-container>
 
       <v-container>
-        <v-row v-for="episode in episodes">
+        <v-row v-for="episode in data?.episodes">
           <v-col cols="8" class="mx-auto">
             <v-card class="episode-card" variant="outlined" rounded="lg">
               <v-container>
                 <v-row>
                   <v-col cols="auto" class="d-flex flex-column text-body-2 text-grey-lighten-1 text-center">
-                    <NuxtImg width="55" height="55" :src="episode.image" />
+                    <NuxtImg width="55" height="55" :src="data?.image.url" />
                     <div class="pt-2">{{ episode.duration }}</div>
                   </v-col>
                   <v-col>
                     <v-row>
                       <v-col class="text-h6 pb-0">
-                        <NuxtLink to="/episode" class="text-decoration-none text-white">
-                          {{ episode.title }}
+                        <NuxtLink :to="`/episode/${episode.guid}`" class="text-decoration-none text-white">
+                          #{{ episode.episode }} - {{ episode.title }}
                         </NuxtLink>
                       </v-col>
                       <v-col class="text-right text-body-2 text-grey-lighten-1 pb-0" cols="2">
-                        {{ episode.date }}
+                        {{ formatDate(episode.pubDate) }}
                       </v-col>
                     </v-row>
                     <v-row>
                       <v-col class="text-grey-lighten-1 text-body-2">
-                        {{ episode.description }}
+                        {{ episode.content.replace(/(<([^>]+)>)/ig, "").substring(0, 200) + '...' }}
                       </v-col>
                     </v-row>
                   </v-col>
@@ -79,11 +75,19 @@
 </template>
 
 <script setup lang="ts">
-//const dialog = ref(false);
+const { data } = await useAsyncData('feed', () => $fetch('/api/feed'))
 
 definePageMeta({
   layout: 'layout2'
 })
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  })
+}
 
 const episodes = computed(() => {
   return [

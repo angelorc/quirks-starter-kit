@@ -37,6 +37,7 @@
     "@vueuse/nuxt": "^10.7.0",
     "cosmjs-types": "^0.8.0",
     "pinia": "^2.1.7",
+    "rss-parser": "^3.13.0",
     "vue-toastification": "2.0.0-rc.5"
   }
 }
