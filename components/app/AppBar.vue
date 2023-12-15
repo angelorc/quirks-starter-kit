@@ -6,6 +6,7 @@
       <div class="ml-3 text-h5 mt-1">Team</div>
     </div>
     <template #append>
+      <AppUserMenu />
       <client-only>
         <AppConnectBtn />
       </client-only>
