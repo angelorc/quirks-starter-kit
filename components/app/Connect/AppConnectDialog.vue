@@ -24,7 +24,7 @@
 
 <script lang="ts" setup>
 import { useConnect, useConfig } from "@quirks/vue";
-import { suggestChains } from "@quirks/store";
+import { suggestChains, signArbitrary, getAddress } from "@quirks/store";
 import { bitsong, bitsongAssetList } from "@nabla-studio/chain-registry";
 
 const { wallets } = useConfig();

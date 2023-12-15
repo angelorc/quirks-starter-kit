@@ -12,6 +12,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.1.0",
+    "@types/better-sqlite3": "^7.6.8",
     "esbuild-plugin-polyfill-node": "^0.3.0",
     "nuxt": "^3.8.2",
     "sass": "^1.69.5",
@@ -26,6 +27,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/vue-fontawesome": "^3.0.5",
+    "@lucia-auth/adapter-sqlite": "^2.0.1",
     "@mdi/font": "^7.3.67",
     "@nabla-studio/chain-registry": "^0.3.3",
     "@pinia/nuxt": "^0.5.1",
@@ -35,9 +37,14 @@
     "@quirks/wallets": "^0.7.4",
     "@vueuse/core": "^10.7.0",
     "@vueuse/nuxt": "^10.7.0",
+    "better-sqlite3": "^9.2.2",
     "cosmjs-types": "^0.8.0",
     "lucia": "^2.7.5",
     "pinia": "^2.1.7",
     "vue-toastification": "2.0.0-rc.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
   }
 }

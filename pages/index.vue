@@ -4,6 +4,7 @@
       Ciao
     </template>
     <template #body>
+      <AppUserInfo />
     </template>
   </app-page>
 </template>
