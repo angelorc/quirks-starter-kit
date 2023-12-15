@@ -1,8 +1,9 @@
 <template>
   <div v-if="connected" class="d-flex align-center">
-    <v-menu v-model="menu">
+    <v-menu v-model="menu" :close-on-content-click="false">
       <template v-slot:activator="{ props }">
-        <v-list v-bind="props" bg-color="transparent" variant="text" density="comfortable" rounded="pill">
+        <v-list style="cursor: pointer;" v-bind="props" bg-color="transparent" variant="text" density="comfortable"
+          rounded="pill">
           <v-list-item :prepend-avatar="defaultImage" :title="formatShortAddress(address, 6)" subtitle="0 BTSG">
           </v-list-item>
         </v-list>
