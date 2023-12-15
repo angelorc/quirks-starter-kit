@@ -1,7 +1,7 @@
 import { SqliteError } from "better-sqlite3";
-import { auth } from "../utils/lucia";
+import { auth } from "../../utils/lucia";
 import { LuciaError } from "lucia";
-import { verifySignature } from "../utils/bitsong";
+import { verifySignature } from "../../utils/bitsong";
 
 export default defineEventHandler(async (event) => {
   const { msg } = await readBody<{ msg: string; }>(event);

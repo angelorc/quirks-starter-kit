@@ -2,7 +2,7 @@ import { Secp256k1, Secp256k1Signature, Sha256 } from '@cosmjs/crypto'
 import { fromBase64 } from '@cosmjs/encoding'
 import { serializeSignDoc, StdSignDoc } from '@cosmjs/amino'
 
-export const makeSignDoc = (signer: string, rawMsg: string): StdSignDoc => ({
+export const makeSignDoc = (address: string, msg: string): StdSignDoc => ({
   chain_id: '',
   account_number: '0',
   sequence: '0',
@@ -14,8 +14,8 @@ export const makeSignDoc = (signer: string, rawMsg: string): StdSignDoc => ({
     {
       type: 'sign/MsgSignData',
       value: {
-        signer,
-        data: rawMsg,
+        address,
+        data: msg,
       },
     },
   ],
@@ -57,21 +57,21 @@ function parseRawMessage(rawMsg: string): ParsedMessage | null {
 }
 
 
-export async function verifySignature(msg: string) {
-  const { rawMsg, pub_key, signature, signer } = JSON.parse(atob(msg))
+export async function verifySignature(encodedMsg: string) {
+  const { msg, pub_key, signature, address } = JSON.parse(atob(encodedMsg))
 
-  if (!rawMsg || !pub_key || !signature) {
+  if (!msg || !pub_key || !signature) {
     throw new Error('Invalid payload')
   }
 
-  const parsedMessage = parseRawMessage(rawMsg)
+  const parsedMessage = parseRawMessage(msg)
   if (!parsedMessage) {
     throw new Error('Invalid message')
   }
 
   // TODO: validate domain, date, etc.
 
-  const signDoc = serializeSignDoc(makeSignDoc(signer, rawMsg))
+  const signDoc = serializeSignDoc(makeSignDoc(address, msg))
 
   const result = Secp256k1.verifySignature(
     Secp256k1Signature.fromFixedLength(fromBase64(signature)),
@@ -83,5 +83,5 @@ export async function verifySignature(msg: string) {
     throw new Error('Signature verification failed')
   }
 
-  return signer
+  return address
 }

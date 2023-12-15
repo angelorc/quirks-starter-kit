@@ -7,6 +7,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       network: process.env.NUXT_PUBLIC_NETWORK || 'testnet',
+      chainId: 'bitsong-2b',
+      appName: 'BitSong Studio',
+      links: {
+        tos: 'https://bitsong.io/tos',
+        privacy: 'https://bitsong.io/privacy'
+      }
     },
   },
   build: {
