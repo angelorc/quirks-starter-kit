@@ -50,6 +50,9 @@ dependencies:
   cosmjs-types:
     specifier: ^0.8.0
     version: 0.8.0
+  lucia:
+    specifier: ^2.7.5
+    version: 2.7.5
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(vue@3.3.11)
@@ -4676,6 +4679,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /lucia@2.7.5:
+    resolution: {integrity: sha512-2e/Oezb+b2qjQLyP28CraBlad2s9GAp22bfPLn05IsXi99FEX/oTo2TGMM4Gn9nJT7ow15kEFkwL3lBUpknopA==}
+    dev: false
 
   /magic-string-ast@0.3.0:
     resolution: {integrity: sha512-0shqecEPgdFpnI3AP90epXyxZy9g6CRZ+SZ7BcqFwYmtFEnZ1jpevcV5HoyVnlDS9gCnc1UIg3Rsvp3Ci7r8OA==}
