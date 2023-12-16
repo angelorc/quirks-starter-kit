@@ -5,6 +5,7 @@ import { polyfillNode } from "esbuild-plugin-polyfill-node";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
+    nftStorageApiKey: '',
     public: {
       network: process.env.NUXT_PUBLIC_NETWORK || 'testnet',
       chainId: 'bitsong-2b',
