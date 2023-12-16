@@ -1,4 +1,4 @@
-import { ConnectionStates, signArbitrary } from '@quirks/store';
+import { ConnectionStates, signArbitrary, getAddress } from '@quirks/store';
 
 interface User {
   userId: string;
@@ -36,13 +36,13 @@ ${window.location.hostname}
 
 Date:
 ${new Date().toUTCString()}`;
-  
+
     const { pub_key, signature } = await signArbitrary(
       chainId,
       address,
       msg,
     );
-  
+
     return window.btoa(
       JSON.stringify({
         address,
@@ -81,9 +81,23 @@ ${new Date().toUTCString()}`;
     user.value = null
   }
 
+  const { address } = useChain('bitsong')
+
+  watch(
+    address,
+    async () => {
+      console.log('--------> Address Changed', address.value)
+    },
+    {
+      immediate: true,
+    }
+  )
+
   watch(
     walletStatus,
     async () => {
+      console.log('--------> Wallet Status Changed', walletStatus.value)
+      console.log('--------> User', user.value)
       if (walletStatus.value === ConnectionStates.DISCONNECTED) {
         if (user.value) {
           await logout()
@@ -93,7 +107,7 @@ ${new Date().toUTCString()}`;
       if (walletStatus.value === ConnectionStates.CONNECTED) {
         try {
           await login()
-          
+
           const { data } = await me();
           user.value = data.value?.user || null
         } catch (error) {
@@ -111,6 +125,7 @@ ${new Date().toUTCString()}`;
   watch(
     wallet,
     async () => {
+      console.log('--------> Wallet Changed', wallet.value)
       if (wallet.value) {
         wallet.value.events.on('keystorechange', () => {
           console.log('keystorechange')
