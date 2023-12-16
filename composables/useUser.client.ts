@@ -1,28 +1,10 @@
 import { ConnectionStates, signArbitrary, getAddress } from '@quirks/store';
-import { useWalletEvents } from '@quirks/vue';
-
-interface User {
-  userId: string;
-  address: string;
-  username: string | null;
-  image: string | null;
-  image_cover: string | null;
-}
+import { useUserState, type User } from './useUserState';
 
 export const useUser = () => {
-  const walletStatus = useQuirks()(
-    (state) => state.status,
-  );
+  const user = useUserState()
 
-  const disconnect = useQuirks()(
-    (state) => state.disconnect,
-  );
-
-  const user = useState<User | null>('user', () => null)
-
-  const { status } = useConnect();
-
-  const createMsg = async () => {
+  const createMsg = () => {
     const { appName, links, chainId } = useRuntimeConfig().public
     const address = getAddress("bitsong");
     const msg = `Welcome to ${appName}!
@@ -40,61 +22,16 @@ ${window.location.hostname}
 Date:
 ${new Date().toUTCString()}`;
 
-    const { pub_key, signature } = await signArbitrary(
-      chainId,
+    return {
       address,
       msg,
-    );
-
-    return window.btoa(
-      JSON.stringify({
-        address,
-        msg,
-        pub_key,
-        signature,
-      }),
-    );
-  }
-
-  const login = async () => {
-    try {
-      const msg = await createMsg()
-
-      return useFetch('/api/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ msg }),
-      })
-    } catch (_) {
-      resetUser()
+      chainId,
+      appName,
+      links,
     }
   }
 
-  const me = async () => useFetch('/api/me')
-
-  const logout = async () => useFetch('/api/auth/logout', {
-    method: 'POST'
-  })
-
-  const resetUser = () => {
-    if (walletStatus.value === ConnectionStates.CONNECTED) {
-      disconnect()
-    }
-
-    logout()
-    user.value = null
-  }
-
-  // const { address } = useChain('bitsong')
-
-  // watch(
-  //   address,
-  //   async () => {
-  //     console.log('--------> Address Changed', address.value)
-  //   },
-  //   {
-  //     immediate: true,
-  //   }
-  // )
+  const { status, disconnect } = useConnect();
 
   watch(
     status,
@@ -103,23 +40,73 @@ ${new Date().toUTCString()}`;
       console.log('--------> User', user.value)
       if (status.value === ConnectionStates.DISCONNECTED) {
         if (user.value) {
-          await logout()
+          console.log('--------> Logout')
+          useAsyncData('logout', async () => {
+            const data = await $fetch('/api/auth/logout', {
+              method: 'POST'
+            })
+            user.value = null
+            console.log('--------> New User Value', user.value)
+
+            return data
+          })
         }
       }
 
       if (status.value === ConnectionStates.CONNECTED) {
-        try {
+        if (user.value === null || user.value.address !== getAddress("bitsong")) {
           console.log('--------> Login')
-          await login()
+          useAsyncData('login', async () => {
+            try {
+              const { address, chainId, msg } = createMsg()
 
-          const { data } = await me();
-          user.value = data.value?.user || null
+              const { pub_key, signature } = await signArbitrary(
+                chainId,
+                address,
+                msg,
+              );
 
-          console.log('--------> New User Value', user.value)
-        } catch (error) {
-          console.error(error);
-          resetUser()
+              await $fetch('/api/auth/login', {
+                method: 'POST',
+                body: JSON.stringify({
+                  msg: window.btoa(
+                    JSON.stringify({
+                      address,
+                      msg,
+                      pub_key,
+                      signature,
+                    }),
+                  )
+                }),
+              })
+
+              const data = await $fetch<{ user: User }>('/api/me')
+
+              if (data.user.address !== getAddress("bitsong")) {
+                await $fetch('/api/auth/logout', {
+                  method: 'POST'
+                })
+                user.value = null
+
+                throw new Error('Address mismatch, disconnected!')
+              }
+
+              user.value = data.user || null
+              console.log('--------> New User Value', user.value)
+            } catch (error) {
+              console.error(error)
+
+              disconnect()
+
+              await $fetch('/api/auth/logout', {
+                method: 'POST',
+              })
+
+              user.value = null
+            }
+          })
         }
+
       }
     },
     {
