@@ -1,7 +1,13 @@
 <template>
-  <pre>{{ user }}</pre>
+  <pre></pre>
 </template>
 
 <script setup lang="ts">
-const user = useUser();
+import { useWalletEvents } from "@quirks/vue";
+
+//const user = useUser();
+
+useWalletEvents("keystorechange", () => {
+  console.log("Keystore Changed");
+});
 </script>

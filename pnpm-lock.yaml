@@ -32,6 +32,9 @@ dependencies:
   '@pinia/nuxt':
     specifier: ^0.5.1
     version: 0.5.1(vue@3.3.11)
+  '@quirks/core':
+    specifier: ^0.8.4
+    version: 0.8.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
   '@quirks/nuxt':
     specifier: ^0.1.16
     version: 0.1.16(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@nuxt/kit@3.8.2)(@nuxt/schema@3.8.2)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(nuxt@3.8.2)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)

@@ -1,4 +1,5 @@
 import { ConnectionStates, signArbitrary, getAddress } from '@quirks/store';
+import { useWalletEvents } from '@quirks/vue';
 
 interface User {
   userId: string;
@@ -18,6 +19,8 @@ export const useUser = () => {
   );
 
   const user = useState<User | null>('user', () => null)
+
+  const { status } = useConnect();
 
   const createMsg = async () => {
     const { appName, links, chainId } = useRuntimeConfig().public
@@ -81,35 +84,38 @@ ${new Date().toUTCString()}`;
     user.value = null
   }
 
-  const { address } = useChain('bitsong')
+  // const { address } = useChain('bitsong')
+
+  // watch(
+  //   address,
+  //   async () => {
+  //     console.log('--------> Address Changed', address.value)
+  //   },
+  //   {
+  //     immediate: true,
+  //   }
+  // )
 
   watch(
-    address,
+    status,
     async () => {
-      console.log('--------> Address Changed', address.value)
-    },
-    {
-      immediate: true,
-    }
-  )
-
-  watch(
-    walletStatus,
-    async () => {
-      console.log('--------> Wallet Status Changed', walletStatus.value)
+      console.log('--------> Wallet Status Changed', status.value)
       console.log('--------> User', user.value)
-      if (walletStatus.value === ConnectionStates.DISCONNECTED) {
+      if (status.value === ConnectionStates.DISCONNECTED) {
         if (user.value) {
           await logout()
         }
       }
 
-      if (walletStatus.value === ConnectionStates.CONNECTED) {
+      if (status.value === ConnectionStates.CONNECTED) {
         try {
+          console.log('--------> Login')
           await login()
 
           const { data } = await me();
           user.value = data.value?.user || null
+
+          console.log('--------> New User Value', user.value)
         } catch (error) {
           console.error(error);
           resetUser()
@@ -121,22 +127,10 @@ ${new Date().toUTCString()}`;
     }
   )
 
-  const wallet = useQuirks()((state) => state.wallet);
-  watch(
-    wallet,
-    async () => {
-      console.log('--------> Wallet Changed', wallet.value)
-      if (wallet.value) {
-        wallet.value.events.on('keystorechange', () => {
-          console.log('keystorechange')
-          resetUser()
-        })
-      }
-    },
-    {
-      immediate: true,
-    }
-  )
+  // useWalletEvents("keystorechange", () => {
+  //   console.log('keystorechange')
+  //   //resetUser()
+  // })
 
   return user as Ref<User | null>
 }

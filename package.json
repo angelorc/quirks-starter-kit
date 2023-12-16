@@ -32,6 +32,7 @@
     "@mdi/font": "^7.3.67",
     "@nabla-studio/chain-registry": "^0.3.3",
     "@pinia/nuxt": "^0.5.1",
+    "@quirks/core": "^0.8.4",
     "@quirks/nuxt": "^0.1.16",
     "@quirks/store": "^0.9.4",
     "@quirks/vue": "^0.4.3",
