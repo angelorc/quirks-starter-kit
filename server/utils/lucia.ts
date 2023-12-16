@@ -1,18 +1,15 @@
 import { lucia } from "lucia";
-import { betterSqlite3 } from "@lucia-auth/adapter-sqlite";
+import { prisma } from "@lucia-auth/adapter-prisma";
+import { PrismaClient } from "@prisma/client";
 import { h3 } from "lucia/middleware";
 
-import sqlite from "better-sqlite3";
-import fs from "fs";
-
-const db = sqlite(":memory:");
-db.exec(fs.readFileSync("schema.sql", "utf8"));
+const client = new PrismaClient();
 
 export const auth = lucia({
-  adapter: betterSqlite3(db, {
+  adapter: prisma(client, {
     user: "user",
-    session: "user_session",
-    key: "user_key"
+    session: "userSession",
+    key: "userKey"
   }),
   middleware: h3(),
   env: process.dev ? "DEV" : "PROD",

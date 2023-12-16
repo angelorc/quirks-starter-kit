@@ -1,4 +1,3 @@
-import { SqliteError } from "better-sqlite3";
 import { auth } from "../../utils/lucia";
 import { LuciaError } from "lucia";
 import { verifySignature } from "../../utils/bitsong";
@@ -49,12 +48,12 @@ export default defineEventHandler(async (event) => {
       return await createSession(user.userId)
     }
 
-    if (e instanceof SqliteError && e.code === "SQLITE_CONSTRAINT_UNIQUE") {
-      throw createError({
-        message: "Address is already registered",
-        statusCode: 400
-      });
-    }
+    // if (e instanceof SqliteError && e.code === "SQLITE_CONSTRAINT_UNIQUE") {
+    //   throw createError({
+    //     message: "Address is already registered",
+    //     statusCode: 400
+    //   });
+    // }
 
     throw createError({
       message: "An unknown error occurred",
