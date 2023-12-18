@@ -3,7 +3,7 @@
   <v-navigation-drawer permanent v-model="drawer">
     <div class="d-flex pt-3 pb-1 pl-4">
       <div><app-logo> </app-logo></div>
-      <div class="ml-3 text-h5 d-flex align-center mr-2">Team</div>
+      <div class="ml-3 text-h5 d-flex align-center mr-2">{{ appName }}</div>
       <div class="d-flex align-center">
         <v-chip color="primary" class="text-capitalize">{{ network }}</v-chip>
       </div>
@@ -25,70 +25,21 @@
           </template>
         </v-list-item>
       </v-list>
-    </div>
+    </div>-->
 
     <v-list nav>
       <div v-for="item in navItems" :key="item.to">
-        <v-list-item :exact="item.exact" :to="item.to" :prepend-icon="item.icon" v-if="!item.onlyLoggedIn || isLoggedIn"
-          rounded="lg">
+        <v-list-item :exact="item.exact" :to="item.to" :prepend-icon="item.icon" rounded="lg">
           <v-list-item-title class="text-body-1">
             {{ item.title }}
           </v-list-item-title>
         </v-list-item>
       </div>
-    </v-list>-->
+    </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-const { drawer } = useNavigationDrawer();
-const { network } = useRuntimeConfig().public
-
-interface NavItem {
-  title: string;
-  icon: string;
-  to: string;
-  onlyLoggedIn?: boolean;
-  exact?: boolean;
-}
-
-const navItems = computed<NavItem[]>(() => {
-  return [
-    {
-      title: "Home",
-      icon: "mdi-home",
-      to: "/",
-      onlyLoggedIn: false,
-      exact: true,
-    },
-    {
-      title: "FT Distributor",
-      icon: "fa:fas fa-sack-dollar",
-      to: "/fantoken-distributor",
-      onlyLoggedIn: true,
-      exact: true,
-    },
-    {
-      title: "Mutlisig",
-      icon: "fa:fas fa-sack-dollar",
-      to: "/multisig",
-      onlyLoggedIn: true,
-      exact: true,
-    },
-    {
-      title: "Mutlisig Broadcast",
-      icon: "fa:fas fa-sack-dollar",
-      to: "/multisig-broadcast",
-      onlyLoggedIn: true,
-      exact: true,
-    },
-    {
-      title: "Open Proposal",
-      icon: "fa:fas fa-sack-dollar",
-      to: "/proposal",
-      onlyLoggedIn: true,
-      exact: true,
-    },
-  ];
-});
+const { network, appName } = useRuntimeConfig().public
+const { drawer, navItems } = useNavigationDrawer();
 </script>

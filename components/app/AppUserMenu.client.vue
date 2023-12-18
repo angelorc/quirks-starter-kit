@@ -11,22 +11,22 @@
 
       <v-card min-width="300">
         <div class="py-3 text-center flex-grow-1">
-          <v-avatar size="80">
+          <v-avatar size="80" @click.stop="navigateTo('/profile')" :style="{ cursor: 'pointer' }">
             <v-img :src="defaultImage" :alt="accountName"></v-img>
           </v-avatar>
-          <v-card-title>
+          <v-card-title @click.stop="navigateTo('/profile')" :style="{ cursor: 'pointer' }">
             {{ accountName }}
           </v-card-title>
-          <v-btn icon="mdi-pencil" size="small" variant="flat" rounded="pill"></v-btn>
-          <v-btn icon="mdi-refresh" size="small" variant="flat" rounded="pill"></v-btn>
-          <v-btn icon="mdi-content-copy" size="small" variant="flat" rounded="pill"></v-btn>
+          <v-btn icon="mdi-pencil" size="small" variant="text" rounded="pill" color="grey-lighten-1"></v-btn>
+          <v-btn icon="mdi-refresh" size="small" variant="text" rounded="pill" color="grey-lighten-1"></v-btn>
+          <AppCopyBtn v-if="address" :text="address" />
         </div>
         <v-divider></v-divider>
         <v-list density="comfortable">
-          <v-list-item append-icon="mdi-account" to="/profile" @click="menu = false">
+          <v-list-item append-icon="mdi-account" to="/profile">
             <v-list-item-title>My Profile</v-list-item-title>
           </v-list-item>
-          <v-list-item append-icon="mdi-cogs" to="/profile" @click="menu = false">
+          <v-list-item append-icon="mdi-cogs" to="/settings">
             <v-list-item-title>Settings</v-list-item-title>
           </v-list-item>
         </v-list>
