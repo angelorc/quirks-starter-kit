@@ -1,14 +1,13 @@
 <template>
-  <v-navigation-drawer :permanent="mdAndUp" :temporary="mdAndDown" v-model="drawer">
-    <template #prepend>
-      <div class="d-flex pt-3 pb-1 pl-4">
-        <div><app-logo> </app-logo></div>
-        <div class="ml-3 text-h5 d-flex align-center mr-2">Team</div>
-        <div class="d-flex align-center">
-          <v-chip color="primary" class="text-capitalize">{{ network }}</v-chip>
-        </div>
+  <!--<v-navigation-drawer :permanent="mdAndUp" :temporary="mdAndDown" v-model="drawer">-->
+  <v-navigation-drawer permanent v-model="drawer">
+    <div class="d-flex pt-3 pb-1 pl-4">
+      <div><app-logo> </app-logo></div>
+      <div class="ml-3 text-h5 d-flex align-center mr-2">Team</div>
+      <div class="d-flex align-center">
+        <v-chip color="primary" class="text-capitalize">{{ network }}</v-chip>
       </div>
-    </template>
+    </div>
 
     <!--<div v-if="isLoggedIn">
       <v-list class="pb-0">
@@ -42,18 +41,8 @@
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from "@/store/app";
-import { useDisplay } from "vuetify";
-import { storeToRefs } from "pinia";
-
-const { mdAndUp, mdAndDown } = useDisplay();
-
-const { drawer } = storeToRefs(useAppStore());
-onBeforeMount(() => {
-  drawer.value = mdAndUp.value;
-});
-
-const network = computed(() => useRuntimeConfig().public.network);
+const { drawer } = useNavigationDrawer();
+const { network } = useRuntimeConfig().public
 
 interface NavItem {
   title: string;
