@@ -27,23 +27,23 @@ dependencies:
     specifier: ^7.3.67
     version: 7.3.67
   '@nabla-studio/chain-registry':
-    specifier: ^0.3.3
-    version: 0.3.3
+    specifier: ^0.4.0
+    version: 0.4.0
   '@pinia/nuxt':
     specifier: ^0.5.1
     version: 0.5.1(vue@3.3.11)
   '@quirks/core':
-    specifier: ^0.8.4
-    version: 0.8.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
+    specifier: ^0.8.5
+    version: 0.8.5(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
   '@quirks/nuxt':
-    specifier: ^0.1.16
-    version: 0.1.16(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@nuxt/kit@3.8.2)(@nuxt/schema@3.8.2)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(nuxt@3.8.2)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
+    specifier: ^0.1.18
+    version: 0.1.18(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@nuxt/kit@3.8.2)(@nuxt/schema@3.8.2)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(nuxt@3.8.2)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
   '@quirks/store':
-    specifier: ^0.9.4
-    version: 0.9.4(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7)
+    specifier: ^0.9.5
+    version: 0.9.5(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7)
   '@quirks/vue':
-    specifier: ^0.4.3
-    version: 0.4.3(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
+    specifier: ^0.4.5
+    version: 0.4.5(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
   '@quirks/wallets':
     specifier: ^0.7.4
     version: 0.7.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@cosmostation/extension-client@0.1.15)(@keplr-wallet/types@0.12.53)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(semver@7.5.4)
@@ -1112,8 +1112,8 @@ packages:
       murmurhash3js-revisited: 3.0.0
     dev: false
 
-  /@nabla-studio/chain-registry@0.3.3:
-    resolution: {integrity: sha512-iKtmLXerrc/hosT4x9EQc0iURwv//NwtcYGC4fVGiu4SL20+4etZ7B7fb3qxbzphpw3711Bj9jKdjpEUmP9S/Q==}
+  /@nabla-studio/chain-registry@0.4.0:
+    resolution: {integrity: sha512-+rXpX6vB7pnwEL7Elw+0rEz8ENqdmetB8JYt2nZs7E1vcOOJZjVbWiQaymTJywZZZM05VmnYd795c/xgfI7oCw==}
     dev: false
 
   /@netlify/functions@2.4.1:
@@ -1717,8 +1717,8 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: false
 
-  /@quirks/core@0.8.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0):
-    resolution: {integrity: sha512-uGhS+mDBkU09BDIYzQkSm8bB0wV5bXJWsBmGSdGlo2hYlPUKMbFYsXUWZKCqI2q95wnTW2+DVU6yguMFKmuNGA==}
+  /@quirks/core@0.8.5(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0):
+    resolution: {integrity: sha512-PgnowqxRdSyHtbmNWCD64h/tWuF8yOU4P6n8Z1trqob4MgebgbVzTB1GF5QO8U8LCFNrAxtPC55gESFphlc3BA==}
     peerDependencies:
       '@cosmjs/amino': ^0.31.3
       '@cosmjs/proto-signing': ^0.31.3
@@ -1734,7 +1734,7 @@ packages:
       '@cosmjs/amino': 0.31.3
       '@cosmjs/proto-signing': 0.31.3
       '@cosmjs/stargate': 0.31.3
-      '@nabla-studio/chain-registry': 0.3.3
+      '@nabla-studio/chain-registry': 0.4.0
       '@walletconnect/types': 2.10.6
       '@walletconnect/universal-provider': 2.10.6
       base64-js: 1.5.1
@@ -1744,8 +1744,8 @@ packages:
       pino-pretty: 10.3.0
     dev: false
 
-  /@quirks/nuxt@0.1.16(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@nuxt/kit@3.8.2)(@nuxt/schema@3.8.2)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(nuxt@3.8.2)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7):
-    resolution: {integrity: sha512-iW+5fSEUi7EGpUhBQE0wTRgkmQoP9zPbIv2xOf9V4UY6TKFcc6xLUW2G1V7l5EHcV0NdI/H3mt3C5cOJqIjbHA==}
+  /@quirks/nuxt@0.1.18(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@nuxt/kit@3.8.2)(@nuxt/schema@3.8.2)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(nuxt@3.8.2)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7):
+    resolution: {integrity: sha512-UQ7Paebne5FEngz1d5DQsWFyTInefK1DKdSYJrgXgPUTn9ieJSMUOvemMdX0PZu/o8sae8yVKN6S4Eab5VGw0Q==}
     peerDependencies:
       '@nuxt/kit': ^3.8.1
       '@nuxt/schema': ^3.8.1
@@ -1753,8 +1753,8 @@ packages:
     dependencies:
       '@nuxt/kit': 3.8.2
       '@nuxt/schema': 3.8.2
-      '@quirks/store': 0.9.4(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7)
-      '@quirks/vue': 0.4.3(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
+      '@quirks/store': 0.9.5(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7)
+      '@quirks/vue': 0.4.5(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7)
       nuxt: 3.8.2(sass@1.69.5)(vite@4.5.1)
     transitivePeerDependencies:
       - '@cosmjs/amino'
@@ -1773,8 +1773,8 @@ packages:
       - zustand-vue
     dev: false
 
-  /@quirks/store@0.9.4(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7):
-    resolution: {integrity: sha512-sizEijhamNGuJLsaNdznAfwbcTFd/WEVWUxp5jxE+FreMJ0D1pd+LspAYjdO/s13FjV6HbO/IFdTZFabjcLu3Q==}
+  /@quirks/store@0.9.5(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7):
+    resolution: {integrity: sha512-NJtE/oQBW2Z9UisDJsy1KEjnvYFoTMta+yO9FKz0nldkP9ARpm7WrKzLsO+FmdW2G2Ng44dzD07kCFPVXTO7tQ==}
     peerDependencies:
       '@cosmjs/amino': ^0.31.3
       '@cosmjs/cosmwasm-stargate': ^0.31.3
@@ -1788,8 +1788,8 @@ packages:
       '@cosmjs/cosmwasm-stargate': 0.31.3
       '@cosmjs/proto-signing': 0.31.3
       '@cosmjs/stargate': 0.31.3
-      '@nabla-studio/chain-registry': 0.3.3
-      '@quirks/core': 0.8.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
+      '@nabla-studio/chain-registry': 0.4.0
+      '@quirks/core': 0.8.5(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
       '@walletconnect/universal-provider': 2.10.6
       cosmjs-types: 0.8.0
       zustand: 4.4.7(react@18.2.0)
@@ -1801,8 +1801,8 @@ packages:
       - pino-pretty
     dev: false
 
-  /@quirks/vue@0.4.3(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7):
-    resolution: {integrity: sha512-HcSx7lVUmqFZ2zG4iDgS+AKQGYtukju83lmO9Zf3/ebMzxTy/PsqcY0zN80obU8epdQUZ9cEROuUkyNzNPQUZA==}
+  /@quirks/vue@0.4.5(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(vue@3.3.11)(zustand-vue@1.0.0-beta.20)(zustand@4.4.7):
+    resolution: {integrity: sha512-ouf/3LRCeCoGx0/ZlAs4nAX4X+K+VXbrBJyqyC0a+ujIun30dk6ovUGb+wZhNs4vgKCG/164SI42GNd5pj2Hrg==}
     peerDependencies:
       '@cosmjs/amino': ^0.31.3
       cosmjs-types: ^0.8.0
@@ -1812,8 +1812,8 @@ packages:
       zustand-vue: 1.0.0-beta.20
     dependencies:
       '@cosmjs/amino': 0.31.3
-      '@quirks/core': 0.8.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
-      '@quirks/store': 0.9.4(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7)
+      '@quirks/core': 0.8.5(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
+      '@quirks/store': 0.9.5(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)(zustand@4.4.7)
       cosmjs-types: 0.8.0
       eventemitter3: 5.0.1
       vue: 3.3.11
@@ -1845,8 +1845,8 @@ packages:
       '@cosmjs/proto-signing': 0.31.3
       '@cosmostation/extension-client': 0.1.15
       '@keplr-wallet/types': 0.12.53
-      '@nabla-studio/chain-registry': 0.3.3
-      '@quirks/core': 0.8.4(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
+      '@nabla-studio/chain-registry': 0.4.0
+      '@quirks/core': 0.8.5(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.31.3)(@cosmjs/stargate@0.31.3)(@walletconnect/types@2.10.6)(@walletconnect/universal-provider@2.10.6)(base64-js@1.5.1)(cosmjs-types@0.8.0)(eventemitter3@5.0.1)(long@5.2.3)(pino-pretty@10.3.0)
       cosmjs-types: 0.8.0
       long: 5.2.3
       semver: 7.5.4

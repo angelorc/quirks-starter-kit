@@ -7,7 +7,9 @@ import { useWalletEvents } from "@quirks/vue";
 
 const user = useUser();
 
+const { disconnect } = useConnect();
+
 useWalletEvents("keystorechange", () => {
-  console.log("Keystore Changed");
+  disconnect()
 });
 </script>
