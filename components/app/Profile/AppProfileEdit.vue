@@ -2,26 +2,29 @@
   <v-dialog persistent width="585" :model-value="props.modelValue"
     @update:model-value="$emit('update:modelValue', $event)">
     <v-card>
-      <v-toolbar color="transparent">
-        <v-toolbar-title>Edit Profile</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn icon @click.stop="handleClose">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </v-toolbar>
       <v-card variant="text">
-        <v-img cover :src="props.cover" height="250" class="d-flex align-center text-center">
-          <v-btn icon="mdi-camera" @click.stop="handleClose" variant="text">
-          </v-btn>
+        <v-img cover :src="props.cover" height="127" class="d-flex align-center text-center">
+          <v-btn icon="mdi-camera" @click.stop="handleClose" variant="plain"></v-btn>
+          <v-btn icon="mdi-close" @click.stop="handleClose" variant="plain"></v-btn>
         </v-img>
         <div class="d-flex justify-space-between mx-4">
-          <v-avatar v-if="!avatar" color="surface-variant" size="125" class="profile-avatar"></v-avatar>
-          <v-avatar v-else size="125" class="profile-avatar" :src="avatar"></v-avatar>
+          <v-avatar v-if="!avatar" color="surface-variant" size="86" class="profile-avatar">
+            <v-btn icon="mdi-camera" @click.stop="handleClose" variant="plain"></v-btn>
+          </v-avatar>
+          <v-avatar v-else size="86" class="profile-avatar" :src="avatar">
+            <v-btn icon="mdi-camera" @click.stop="handleClose" variant="plain"></v-btn>
+          </v-avatar>
         </div>
       </v-card>
-      <v-card-actions>
+      <v-card-text>
+        <v-text-field label="Username" variant="outlined"></v-text-field>
+      </v-card-text>
+      <v-card-actions class="justify-center px-6 py-3">
         <v-spacer></v-spacer>
-        <v-btn rounded="pill" color="primary" variant="flat" @click.stop="handleSave">
+        <v-btn class="w-25 pt-1" rounded="pill" color="grey-lighten-1" variant="text" @click.stop="handleClose">
+          Cancel
+        </v-btn>
+        <v-btn class="w-25 pt-1" rounded="pill" color="primary" variant="flat" @click.stop="handleSave">
           Save
         </v-btn>
       </v-card-actions>
@@ -67,7 +70,7 @@ const onDiscardChanges = (value: boolean) => {
 
 <style scoped>
 .profile-avatar {
-  margin-top: -58px;
+  margin-top: -43px;
   border: 2px solid white;
 }
 </style>
