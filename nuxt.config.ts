@@ -13,11 +13,19 @@ export default defineNuxtConfig({
       links: {
         tos: 'https://bitsong.io/tos',
         privacy: 'https://bitsong.io/privacy'
-      }
+      },
+      ipfsGatewaySuffix: '.ipfs.nftstorage.link',
+      ipfsGateway: 'https://bas-cdn.com/ipfs/'
     },
   },
   build: {
     transpile: ['vue-toastification', 'vuetify'],
+  },
+  routeRules: {
+    '/ipfs/**': { proxy: 'https://bas-cdn.com/ipfs/**' }
+  },
+  image: {
+    domains: ['localhost'],
   },
   modules: [
     '@nuxt/image',

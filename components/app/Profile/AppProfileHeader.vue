@@ -1,9 +1,11 @@
 <template>
   <v-card variant="text" rounded="lg">
-    <v-img cover :src="props.cover" height="300"></v-img>
+    <v-img cover :src="cover" height="300"></v-img>
     <div class="d-flex justify-space-between mx-4">
       <v-avatar v-if="!avatar" color="surface-variant" size="125" class="profile-avatar"></v-avatar>
-      <v-avatar v-else size="125" class="profile-avatar" :src="avatar"></v-avatar>
+      <v-avatar v-else size="125" class="profile-avatar">
+        <v-img :src="avatar" :alt="address"></v-img>
+      </v-avatar>
 
       <v-btn rounded="pill" class="mt-4" variant="outlined" @click.stop="editProfileDialog = true">
         Edit Profile
@@ -25,17 +27,18 @@
       <AppCopyBtn :text="address" />
     </v-card-subtitle>
   </v-card>
-  <AppProfileEdit v-model="editProfileDialog" />
+  <AppProfileEdit v-model="editProfileDialog" :avatar="avatar" :cover="cover" :username="username" />
 </template>
 
 <script setup lang="ts">
 import defaultCover from "~/assets/images/default-cover.png";
+import defaultImage from "~/assets/images/default.png";
 
 interface Props {
   address: string;
-  cover?: string;
-  avatar?: string;
-  username?: string;
+  cover?: string | null;
+  avatar?: string | null;
+  username?: string | null;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -46,6 +49,15 @@ const props = withDefaults(defineProps<Props>(), {
 
 const editProfileDialog = ref(false);
 
+const avatar = computed(() => {
+  if (props.avatar) return useIpfsLink(props.avatar)
+  return defaultImage
+})
+
+const cover = computed(() => {
+  if (props.cover) return useIpfsLink(props.cover)
+  return defaultCover
+})
 </script>
 
 <style scoped>
