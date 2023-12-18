@@ -5,7 +5,7 @@
       <v-avatar v-if="!avatar" color="surface-variant" size="125" class="profile-avatar"></v-avatar>
       <v-avatar v-else size="125" class="profile-avatar" :src="avatar"></v-avatar>
 
-      <v-btn rounded="pill" class="mt-4" variant="outlined" to="/settings/profile">
+      <v-btn rounded="pill" class="mt-4" variant="outlined" @click.stop="editProfileDialog = true">
         Edit Profile
       </v-btn>
     </div>
@@ -25,6 +25,7 @@
       <AppCopyBtn :text="address" />
     </v-card-subtitle>
   </v-card>
+  <AppProfileEdit v-model="editProfileDialog" />
 </template>
 
 <script setup lang="ts">
@@ -42,6 +43,8 @@ const props = withDefaults(defineProps<Props>(), {
   avatar: undefined,
   username: undefined,
 });
+
+const editProfileDialog = ref(false);
 
 </script>
 
