@@ -10,10 +10,10 @@ generator client {
 model User {
   id String @id @unique
 
-  address     String  @unique
-  username    String?
-  image       String?
-  image_cover String?
+  address  String  @unique
+  username String?
+  avatar   String?
+  cover    String?
 
   auth_session UserSession[]
   key          UserKey[]

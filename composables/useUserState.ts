@@ -2,8 +2,8 @@ export interface User {
   userId: string;
   address: string;
   username: string | null;
-  image: string | null;
-  image_cover: string | null;
+  avatar: string | null;
+  cover: string | null;
 }
 
 export const useUserState = () => {
