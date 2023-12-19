@@ -1,6 +1,10 @@
+import { PrismaClient } from '@prisma/client';
 import { NFTStorage, Blob } from 'nft.storage'
+import { ZodError } from 'zod';
+import { userUpdateProfileSchema } from '~/server/schema/updateProfile';
 
 const client = new NFTStorage({ token: useRuntimeConfig().nftStorageApiKey })
+const prismaClient = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   const authRequest = auth.handleRequest(event);
@@ -24,7 +28,23 @@ export default defineEventHandler(async (event) => {
 
   const avatar = data.find((item) => item.name === 'avatar')
   const cover = data.find((item) => item.name === 'cover')
-  const username = data.find((item) => item.name === 'username')?.data.toString()
+  const username = data.find((item) => item.name === 'username')?.data.toString().toLowerCase()
+
+  try {
+    await userUpdateProfileSchema.parseAsync({ avatar, cover, username })
+  } catch (e) {
+    if (e instanceof ZodError) {
+      throw createError({
+        message: e.issues[0].message,
+        status: 400
+      })
+    }
+
+    throw createError({
+      message: 'Something went wrong',
+      status: 500
+    })
+  }
 
   if (!username) {
     throw createError({
@@ -33,8 +53,18 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // TODO: validate username
-  // console.log('username', username)
+  const result = await prismaClient.user.findFirst({
+    where: {
+      username
+    }
+  })
+
+  if (result !== null && result.address !== user.address) {
+    throw createError({
+      message: 'Username is already taken',
+      status: 400
+    })
+  }
 
   let attrs: Partial<Lucia.DatabaseUserAttributes> = {
     username
@@ -44,7 +74,6 @@ export default defineEventHandler(async (event) => {
     if (avatar.data.toString() === null || avatar.data.toString() === '') {
       attrs.avatar = null
     } else {
-      await validateProfileAvatar(avatar)
       attrs.avatar = await client.storeBlob(new Blob([avatar.data], { type: avatar.type }))
     }
   }
@@ -53,7 +82,6 @@ export default defineEventHandler(async (event) => {
     if (cover.data.toString() === null || cover.data.toString() === '') {
       attrs.cover = null
     } else {
-      await validateProfileCover(cover)
       attrs.cover = await client.storeBlob(new Blob([cover.data], { type: cover.type }))
     }
   }
@@ -64,7 +92,6 @@ export default defineEventHandler(async (event) => {
       user: updatedUser
     }
   } catch (error) {
-    console.log('error', error)
     throw createError({
       message: 'Something went wrong',
       status: 400

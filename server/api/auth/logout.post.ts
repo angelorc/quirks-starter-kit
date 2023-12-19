@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
 	const authRequest = auth.handleRequest(event);
-	
-    // check if user is authenticated
+
+	// check if user is authenticated
 	const session = await authRequest.validate();
 	if (!session) {
 		throw createError({
@@ -9,12 +9,12 @@ export default defineEventHandler(async (event) => {
 			statusCode: 401
 		});
 	}
-	
-    // make sure to invalidate the current session!
+
+	// make sure to invalidate the current session!
 	await auth.invalidateSession(session.sessionId);
 	authRequest.setSession(null);
 
-    return {
+	return {
 		user: null
 	};
 });
