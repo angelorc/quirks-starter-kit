@@ -23,7 +23,7 @@
         </div>
       </v-card>
       <v-card-text>
-        <v-text-field v-model="newValues.username" label="Username" hide-details variant="outlined"></v-text-field>
+        <v-text-field v-model="username" label="Username" hide-details variant="outlined"></v-text-field>
       </v-card-text>
       <v-card-text v-if="errorMessage !== ''">
         <v-alert variant="outlined" type="error">
@@ -74,11 +74,18 @@ const newValues = reactive<{
   username?: string;
 }>({});
 
+const resetState = () => {
+  newValues.avatar = undefined
+  newValues.cover = undefined
+  newValues.username = undefined
+  errorMessage.value = ''
+}
+
 interface Props {
   modelValue: boolean;
   cover?: string;
   avatar?: string;
-  username?: string;
+  username?: string | null;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -87,17 +94,35 @@ const props = withDefaults(defineProps<Props>(), {
   username: undefined,
 });
 
+const hasChanges = computed(() => {
+  return newValues.avatar !== undefined || newValues.cover !== undefined || newValues.username !== undefined
+})
+
+const username = computed({
+  get() {
+    return newValues.username || props.username
+  },
+  set(value) {
+    if (value !== null && value !== undefined && value.length > 0) newValues.username = value
+  }
+})
+
 const emits = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
 }>();
 
 const handleClose = () => {
-  discardAlert.value = true;
+  if (hasChanges.value) {
+    discardAlert.value = true;
+  } else {
+    emits("update:modelValue", false);
+  }
 };
 
 const onDiscardChanges = (value: boolean) => {
   if (value) {
     emits("update:modelValue", false);
+    resetState();
   }
 };
 
@@ -216,7 +241,7 @@ const coverUpload = async () => {
 }
 
 const removeCover = async () => {
-  newValues.cover = undefined
+  newValues.cover = null
 }
 
 function base64ToFile(base64String: string, filename: string): File {
@@ -234,18 +259,37 @@ function base64ToFile(base64String: string, filename: string): File {
 }
 
 const handleEditProfile = async () => {
+  if (!hasChanges.value) {
+    emits("update:modelValue", false);
+    return
+  }
+
   loading.value = true
   errorMessage.value = ''
 
   try {
     const avatar = toValue(newValues.avatar)
     const cover = toValue(newValues.cover)
-    const username = toValue(newValues.username)
+    const usernameVal = toValue(username)
 
     const formData = new FormData()
-    formData.append('avatar', avatar ? base64ToFile(avatar, 'avatar') : '')
-    formData.append('cover', cover ? base64ToFile(cover, 'cover') : '')
-    if (username) formData.append('username', username)
+    if (avatar !== undefined) {
+      if (avatar === null) {
+        formData.append('avatar', '')
+      } else {
+        formData.append('avatar', avatar ? base64ToFile(avatar, 'avatar') : '')
+      }
+    }
+
+    if (cover !== undefined) {
+      if (cover === null) {
+        formData.append('cover', '')
+      } else {
+        formData.append('cover', cover ? base64ToFile(cover, 'cover') : '')
+      }
+    }
+
+    if (usernameVal) formData.append('username', usernameVal)
 
     const data = await $fetch('/api/me', {
       method: 'PUT',
@@ -254,6 +298,9 @@ const handleEditProfile = async () => {
 
     const user = useUserState();
     user.value = data.user
+
+    emits("update:modelValue", false);
+    resetState();
   } catch (e) {
     // @ts-ignore
     errorMessage.value = e.data.message

@@ -26,35 +26,40 @@ export default defineEventHandler(async (event) => {
   const cover = data.find((item) => item.name === 'cover')
   const username = data.find((item) => item.name === 'username')?.data.toString()
 
-  if (!avatar || !cover || !username) {
+  if (!username) {
     throw createError({
-      message: 'Missing data',
+      message: 'Username is required',
       status: 400
     })
   }
 
-  await validateProfileAvatar(avatar)
-  await validateProfileCover(cover)
-
   // TODO: validate username
+  // console.log('username', username)
 
-  const avatarCid = await client.storeBlob(new Blob([avatar.data], { type: avatar.type }))
-  //const avatarUrl = `https://${avatarCid}${useRuntimeConfig().public.ipfsGatewaySuffix}`
-  //const avatarUrl = `${useRuntimeConfig().public.ipfsGateway}${avatarCid}`
+  let attrs: Partial<Lucia.DatabaseUserAttributes> = {
+    username
+  }
 
-  const coverCid = await client.storeBlob(new Blob([cover.data], { type: cover.type }))
-  //const coverUrl = `https://${coverCid}${useRuntimeConfig().public.ipfsGatewaySuffix}`
-  //const coverUrl = `${useRuntimeConfig().public.ipfsGateway}${coverCid}`
+  if (avatar !== undefined) {
+    if (avatar.data.toString() === null || avatar.data.toString() === '') {
+      attrs.avatar = null
+    } else {
+      await validateProfileAvatar(avatar)
+      attrs.avatar = await client.storeBlob(new Blob([avatar.data], { type: avatar.type }))
+    }
+  }
 
-  console.log('username', username)
+  if (cover !== undefined) {
+    if (cover.data.toString() === null || cover.data.toString() === '') {
+      attrs.cover = null
+    } else {
+      await validateProfileCover(cover)
+      attrs.cover = await client.storeBlob(new Blob([cover.data], { type: cover.type }))
+    }
+  }
 
   try {
-    const updatedUser = await auth.updateUserAttributes(user.userId, {
-      username,
-      avatar: avatarCid,
-      cover: coverCid
-    })
-
+    const updatedUser = await auth.updateUserAttributes(user.userId, attrs)
     return {
       user: updatedUser
     }
