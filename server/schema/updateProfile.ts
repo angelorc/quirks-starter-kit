@@ -63,7 +63,9 @@ export const userUpdateProfileSchema = z
         'Image must be at least 300x1374px and have a 4:1 aspect ratio'
       )
     ,
-    username: z.string().min(4, 'Username must be at least 4 characters long')
-      .max(15, 'Username must be at most 15 characters long')
+    username: z.string({
+      required_error: 'Username is required'
+    }).min(4, 'Username must be at least 4 characters long')
+      .max(30, 'Username must be at most 30 characters long')
       .regex(/^[a-zA-Z0-9_]+$/, 'Username can only contain alphanumeric characters and underscores'),
   })
