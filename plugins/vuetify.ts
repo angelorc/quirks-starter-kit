@@ -5,6 +5,7 @@ import { createVuetify } from "vuetify";
 import type { ThemeDefinition } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+import { md3 } from 'vuetify/blueprints'
 
 import { library, config } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -49,6 +50,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
     components,
     directives,
+    blueprint: md3,
     theme: {
       defaultTheme:
         useRuntimeConfig().public.network === "mainnet"

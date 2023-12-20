@@ -11,6 +11,7 @@ const config: Config = {
   wallets: [keplrExtension, leapExtension],
   chains: [osmosis, bitsong],
   assetsLists: [osmosisAssetList, bitsongAssetList],
+  autoAccountChange: false
 };
 
 export default defineNuxtPlugin((nuxtApp) => {

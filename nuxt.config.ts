@@ -5,8 +5,16 @@ import { polyfillNode } from "esbuild-plugin-polyfill-node";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
+    nftStorageApiKey: '',
     public: {
       network: process.env.NUXT_PUBLIC_NETWORK || 'testnet',
+      chainId: 'bitsong-2b',
+      appName: 'Studio',
+      links: {
+        tos: 'https://bitsong.io/tos',
+        privacy: 'https://bitsong.io/privacy'
+      },
+      ipfsGateway: 'https://{cid}.ipfs.nftstorage.link',
     },
   },
   build: {
