@@ -1,8 +1,8 @@
 import { auth } from "../../utils/lucia";
-import { LuciaError } from "lucia";
+import { LuciaError, Session } from "lucia";
 import { verifySignature } from "../../utils/bitsong";
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<Session> => {
   const { msg } = await readBody<{ msg: string; }>(event);
 
   if (typeof msg !== "string" || msg.length === 0) {
@@ -40,8 +40,8 @@ export default defineEventHandler(async (event) => {
         attributes: {
           address,
           username: null,
-          image: null,
-          image_cover: null
+          avatar: null,
+          cover: null
         }
       })
 

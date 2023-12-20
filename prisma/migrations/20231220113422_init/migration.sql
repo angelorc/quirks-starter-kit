@@ -3,8 +3,8 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "address" TEXT NOT NULL,
     "username" TEXT,
-    "image" TEXT,
-    "image_cover" TEXT
+    "avatar" TEXT,
+    "cover" TEXT
 );
 
 -- CreateTable

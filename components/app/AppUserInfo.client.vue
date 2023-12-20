@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { useWalletEvents } from "@quirks/vue";
 
-const user = useUser();
+const user = await useUser();
 
 const { disconnect } = useConnect();
 
