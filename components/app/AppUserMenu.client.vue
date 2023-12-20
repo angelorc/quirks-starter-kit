@@ -20,6 +20,9 @@
           <v-card-subtitle :style="{ marginTop: '-6px' }">
             {{ accountName }}
           </v-card-subtitle>
+          <v-card-subtitle v-if="user?.username">
+            {{ formatShortAddress(address, 6) }}
+          </v-card-subtitle>
           <v-btn icon="mdi-refresh" size="small" variant="text" rounded="pill" color="grey-lighten-1"></v-btn>
           <AppCopyBtn v-if="address" :text="address" />
         </div>
@@ -47,8 +50,11 @@ const { address, accountName } = useChain("bitsong")
 const { disconnect, connected } = useConnect();
 
 const menu = ref(false);
+const user = await useUser();
 
-const user = useUserState()
+useWalletEvents("keystorechange", () => {
+  disconnect()
+});
 
 const avatar = computed(() => {
   if (user.value?.avatar) return useIpfsLink(user.value.avatar)
